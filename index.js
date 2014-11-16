@@ -2,7 +2,15 @@ var express = require('express');
 var app = express();
 var jade = require('jade');
 
-var fn = jade.compile('
+var html = jade.render('p yolo');
+
+app.get('/', function(req, res){
+  res.send(html);
+});
+
+app.listen(3000);
+
+/*
 doctype html
 html(lang="fr")
   head
@@ -12,12 +20,4 @@ html(lang="fr")
     #test.yolo
       p.
         Jade c\'est vraiment tout moche a utiliser...
-')
-
-var html = fn();
-
-app.get('/', function(req, res){
-  res.send(html);
-});
-
-app.listen(3000);
+*/
