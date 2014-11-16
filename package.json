@@ -1,0 +1,24 @@
+{
+  "name": "projExpress",
+  "version": "1.0.0",
+  "description": "Hello World",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "projExpress"
+  },
+  "keywords": [
+    "Express",
+    "Hello",
+    "node",
+    "JS"
+  ],
+  "author": "Clement Camboulives",
+  "license": "GNU",
+  "dependencies": {
+    "express": "^4.10.2"
+  }
+}
