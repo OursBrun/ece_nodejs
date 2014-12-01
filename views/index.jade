@@ -1,0 +1,53 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    script(type='text/javascript', src='jquery-1.11.1.min.js')
+      
+    link(rel='icon', href='favicon.ico')
+    
+    title Sign In
+    
+    
+    // Bootstrap core CSS
+    link(href='dist/css/bootstrap.min.css', rel='stylesheet')
+      
+      
+    // Custom styles for this template
+    //link(href='#{pathToSelectedTemplateWithinBootstrap}/signin.css', rel='stylesheet')
+  
+  body
+    div.container#loginDiv
+      form.form-signin#login(role='form')
+        h2.form-signin-heading Please sign in
+        input.form-control#mail(type='text', placeholder='Email or Username', required='', autofocus='')
+        input.form-control#pass(type='password', placeholder='Password', required='')
+        
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+        
+    div#connectedDiv(style="visibility:hidden")
+      p#Welcome
+      button(type='button', onclick = "$('#connectedDiv').css('visibility', 'hidden'); $('#loginDiv').css('visibility', 'visible')") Reset
+        
+  
+  script
+    :coffee
+      $().ready ->
+        $('#login').submit (e) ->
+          user = 
+            mail: $('#mail').val()
+            pass: $('#pass').val()
+          e.preventDefault()
+          $.post "/login", user, (data) ->
+            if data.logged is 'true'
+              $('#loginDiv').css 'visibility', 'hidden'
+              $('#Welcome').html 'Bonjour ' + data.firstName + ' ' + data.lastName
+              $('#connectedDiv').css 'visibility', 'visible'
+            else
+              alert 'wrong id'
+          , 'json'
+          
